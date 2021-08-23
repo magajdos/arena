@@ -1,0 +1,38 @@
+[
+  {
+    "wave": 1,
+    "monsters": [
+      {
+        "level": 1,
+        "count": 5,
+        "type": "Zombie"
+      },
+      {
+        "level": 2,
+        "count": 3,
+        "type": "Zombie"
+      }
+    ]
+  },
+
+  {
+    "wave": 2,
+    "monsters": [
+      {
+        "level": 1,
+        "count": 7,
+        "type": "Zombie"
+      },
+      {
+        "level": 2,
+        "count": 5,
+        "type": "Zombie"
+      },
+      {
+        "level": 3,
+        "count": 2,
+        "type": "Zombie"
+      }
+    ]
+  }
+]
