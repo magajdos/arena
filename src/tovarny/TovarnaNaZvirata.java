@@ -1,19 +1,12 @@
 package tovarny;
 
 import com.google.common.collect.Lists;
-import net.minecraft.server.v1_16_R2.LootCollector;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
-import org.bukkit.loot.LootContext;
-import org.bukkit.loot.LootTable;
-import org.bukkit.loot.LootTables;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TovarnaNaZvirata {
     private final TovarnaNaZbrane tovarnaNaZbrane;
