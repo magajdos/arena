@@ -1,4 +1,4 @@
-package entity;
+package tovarny;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Location;
@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 import tovarny.TovarnaNaZbrane;
 import tovarny.TovarnaNaZbroje;
 
-public class Obchodnik {
+public final class Obchodnik {
     private final TovarnaNaZbrane tovarnaNaZbrane;
     private final TovarnaNaZbroje tovarnaNaZbroje;
 
@@ -21,6 +21,7 @@ public class Obchodnik {
         tovarnaNaZbrane = new TovarnaNaZbrane();
         tovarnaNaZbroje = new TovarnaNaZbroje();
     }
+
     public void vyrobVesnicana(World svet, Location location) {
         var trader = (WanderingTrader) svet.spawnEntity(location, EntityType.WANDERING_TRADER);
         trader.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1000000000, 999999999, true));
@@ -73,7 +74,7 @@ public class Obchodnik {
         MerchantRecipe plateLeggins = new MerchantRecipe(tovarnaNaZbroje.vyrobPlateLeggins(), 999);
         plateLeggins.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
-        MerchantRecipe plateBoots = new MerchantRecipe(tovarnaNaZbroje.vyrobPlateBoots(), 999);
+        MerchantRecipe plateBoots = new MerchantRecipe(tovarnaNaZbroje.vyrobGladiatorBoots(), 999);
         plateBoots.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
         //Gladiator

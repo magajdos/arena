@@ -1,27 +1,23 @@
 package main;
 
 import devices.MonsterSwitch;
-import monsters.Monsters;
-import org.bukkit.DyeColor;
+import listenery.ListeneryMonster;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.*;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import tovarny.TovarnaNaZbrane;
 import tovarny.TovarnaNaZbroje;
 import tovarny.TovarnaNaZvirata;
 
 public class Main extends JavaPlugin {
+
+    private MonsterSwitch monsterSwitch;
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-//        if (!(sender instanceof Player || sender instanceof CommandBlock)) return false;
         if (!(sender instanceof Player)) return false;
         Player hrac = (Player) sender;
         World svet = hrac.getWorld();
@@ -40,16 +36,21 @@ public class Main extends JavaPlugin {
                 break;
 
             case "+monsterSwitch":
-                hrac.getInventory().addItem(MonsterSwitch.createMonsterSwitch());
+                hrac.getInventory().addItem(monsterSwitch.createMonsterSwitch());
                 break;
+
+            case "+resetSwitch":
+                monsterSwitch.reset();
+                break;
+
         }
         return true;
     }
 
     @Override
-
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(new MonsterSwitch(this), this);
-        getServer().getPluginManager().registerEvents(new Monsters(), this);
+        monsterSwitch = new MonsterSwitch(this);
+        getServer().getPluginManager().registerEvents(monsterSwitch, this);
+        getServer().getPluginManager().registerEvents(new ListeneryMonster(), this);
     }
 }

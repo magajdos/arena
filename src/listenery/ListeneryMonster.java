@@ -1,4 +1,4 @@
-package monsters;
+package listenery;
 
         import org.apache.logging.log4j.util.Strings;
         import org.bukkit.Material;
@@ -7,9 +7,9 @@ package monsters;
         import org.bukkit.event.entity.EntityDeathEvent;
         import org.bukkit.inventory.ItemStack;
 
-        import static tovarny.MonsterFactory.ZOMBIE_NAME;
+        import static tovarny.TovarnaNaMonstra.ZOMBIE_NAME;
 
-public class Monsters implements Listener {
+public class ListeneryMonster implements Listener {
 
     @EventHandler
     public static void deathOfMonsters(EntityDeathEvent deathEvent) {

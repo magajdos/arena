@@ -8,6 +8,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 public class TovarnaNaZbrane {
+
+    public static final String FROZEN_SWORD = "FROZEN SWORD";
+    public static final String HEALING_SWORD = "HEALING SWORD";
+
     //NORMALNI ZBRANE
     public ItemStack vyrobTrainingSword() {
         var trainingSword = new ItemStack(Material.WOODEN_SWORD, 1);
@@ -87,11 +91,12 @@ public class TovarnaNaZbrane {
         var lapiz = new ItemStack(Material.LAPIS_LAZULI);
         return lapiz;
     }
-//ARTEFAKTY
+
+    //ARTEFAKTY
     public ItemStack vyrobFrozenSword() {
         var frozenSword = new ItemStack(Material.DIAMOND_SWORD);
         var itemMeta = frozenSword.getItemMeta();
-        itemMeta.setDisplayName("FROZEN SWORD");
+        itemMeta.setDisplayName(FROZEN_SWORD);
         itemMeta.setUnbreakable(true);
         AttributeModifier attributeModifier = new AttributeModifier("Damage", 6, AttributeModifier.Operation.ADD_NUMBER);
         itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, attributeModifier);
@@ -102,7 +107,7 @@ public class TovarnaNaZbrane {
     public ItemStack vyrobHealingSword() {
         var healingSword = new ItemStack(Material.IRON_SWORD);
         var itemMeta = healingSword.getItemMeta();
-        itemMeta.setDisplayName("HEALING SWORD");
+        itemMeta.setDisplayName(HEALING_SWORD);
         itemMeta.setUnbreakable(true);
         AttributeModifier attributeModifier = new AttributeModifier("Damage", 5, AttributeModifier.Operation.ADD_NUMBER);
         itemMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, attributeModifier);

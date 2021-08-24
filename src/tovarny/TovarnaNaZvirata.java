@@ -69,7 +69,7 @@ public class TovarnaNaZvirata {
         MerchantRecipe plateLeggins = new MerchantRecipe(tovarnaNaZbroje.vyrobPlateLeggins(), 999);
         plateLeggins.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
-        MerchantRecipe plateBoots = new MerchantRecipe(tovarnaNaZbroje.vyrobPlateBoots(), 999);
+        MerchantRecipe plateBoots = new MerchantRecipe(tovarnaNaZbroje.vyrobTrainingBoots(), 999);
         plateBoots.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
         //Gladiator

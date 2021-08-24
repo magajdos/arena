@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MonsterFactory {
+public class TovarnaNaMonstra {
 
     public final static String ZOMBIE_NAME = "Zombie";
     //mapujeme level zombie na definici zombie
@@ -34,7 +34,7 @@ public class MonsterFactory {
         private Integer health;
     }
 
-    public MonsterFactory() {
+    public TovarnaNaMonstra() {
         //nahrajeme zombie z jsonu
         var is = getClass().getResourceAsStream("/res/zombies.json");
         Gson gson = new Gson();
