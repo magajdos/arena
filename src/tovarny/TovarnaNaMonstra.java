@@ -1,11 +1,14 @@
 package tovarny;
 
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
+import monstra.MonstraStav;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -13,6 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TovarnaNaMonstra {
@@ -90,6 +94,7 @@ public class TovarnaNaMonstra {
                 zombie.setHealth(health);
             }
             zombie.setCustomName(ZOMBIE_NAME + " LVL " + level);
+            MonstraStav.pridejMonstrum(zombie);
         }
     }
 

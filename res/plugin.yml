@@ -7,3 +7,6 @@ commands:
   +trader:
   +obchodnik:
   +monsterSwitch:
+  +vytvorDvere:
+  +resetSwitch:
+

@@ -1,5 +1,6 @@
 package main;
 
+import devices.DvereDoAreny;
 import devices.MonsterSwitch;
 import listenery.ListeneryMonster;
 import org.bukkit.Location;
@@ -15,6 +16,7 @@ import tovarny.TovarnaNaZvirata;
 public class Main extends JavaPlugin {
 
     private MonsterSwitch monsterSwitch;
+    private DvereDoAreny dvereDoAreny;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -43,14 +45,20 @@ public class Main extends JavaPlugin {
                 monsterSwitch.reset();
                 break;
 
+            case "+vytvorDvere":
+                hrac.getInventory().addItem(dvereDoAreny.vytvorDvere());
+                break;
+
         }
         return true;
     }
 
     @Override
     public void onEnable() {
-        monsterSwitch = new MonsterSwitch(this);
+        dvereDoAreny = new DvereDoAreny(this);
+        monsterSwitch = new MonsterSwitch(this, dvereDoAreny);
         getServer().getPluginManager().registerEvents(monsterSwitch, this);
         getServer().getPluginManager().registerEvents(new ListeneryMonster(), this);
+        getServer().getPluginManager().registerEvents(dvereDoAreny, this);
     }
 }
