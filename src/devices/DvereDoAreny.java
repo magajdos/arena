@@ -36,7 +36,11 @@ public final class DvereDoAreny implements Listener {
         if (JMENO.equals(e.getItemInHand().getItemMeta().getDisplayName())) {
             var block = e.getBlockPlaced();
             block.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
+            var horniCast = block.getWorld().getBlockAt(block.getLocation().add(0,1,0));
+            horniCast.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
+            block.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
             dvere = (Door) block.getBlockData();
+
         }
     }
 
@@ -45,7 +49,7 @@ public final class DvereDoAreny implements Listener {
     }
 
     public ItemStack vytvorDvere() {
-        var dvere = new ItemStack(Material.IRON_DOOR, 1);
+        var dvere = new ItemStack(Material.OAK_DOOR, 1);
         var itemMeta = dvere.getItemMeta();
         itemMeta.setDisplayName(JMENO);
         dvere.setItemMeta(itemMeta);
