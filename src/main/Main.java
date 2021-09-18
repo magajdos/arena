@@ -1,7 +1,7 @@
 package main;
 
 import devices.MonsterSwitch;
-import listenery.ListeneryMonster;
+import listenery.OdmenaZaZabitiMonstra;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -12,6 +12,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         monsterSwitch = new MonsterSwitch(this);
         getServer().getPluginManager().registerEvents(monsterSwitch, this);
-        getServer().getPluginManager().registerEvents(new ListeneryMonster(), this);
+        getServer().getPluginManager().registerEvents(new OdmenaZaZabitiMonstra(), this);
     }
 }

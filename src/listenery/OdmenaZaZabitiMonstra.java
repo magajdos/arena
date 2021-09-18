@@ -6,20 +6,17 @@ package listenery;
         import org.bukkit.event.Listener;
         import org.bukkit.event.entity.EntityDeathEvent;
         import org.bukkit.inventory.ItemStack;
+        import tovarny.TovarnaNaMonstra;
 
         import static tovarny.TovarnaNaMonstra.ZOMBIE_NAME;
 
-public class ListeneryMonster implements Listener {
+public class OdmenaZaZabitiMonstra implements Listener {
 
     @EventHandler
     public static void deathOfMonsters(EntityDeathEvent deathEvent) {
-
-        var coin = new ItemStack(Material.GOLD_NUGGET);
-
-        var monsterName = deathEvent.getEntity().getCustomName();
-        if (Strings.isNotEmpty(monsterName) && monsterName.startsWith(ZOMBIE_NAME)) {
+        if (TovarnaNaMonstra.jeMonstrum(deathEvent.getEntity())) {
             deathEvent.getDrops().clear();
-            deathEvent.getDrops().add(coin);
+            deathEvent.getDrops().add(new ItemStack(Material.GOLD_NUGGET));
         }
     }
 }
