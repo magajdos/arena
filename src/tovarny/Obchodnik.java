@@ -1,19 +1,19 @@
 package tovarny;
 
 import com.google.common.collect.Lists;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import tovarny.TovarnaNaZbrane;
-import tovarny.TovarnaNaZbroje;
 
-public final class Obchodnik {
+public final class Obchodnik implements CommandExecutor {
     private final TovarnaNaZbrane tovarnaNaZbrane;
     private final TovarnaNaZbroje tovarnaNaZbroje;
 
@@ -22,8 +22,11 @@ public final class Obchodnik {
         tovarnaNaZbroje = new TovarnaNaZbroje();
     }
 
-    public void vyrobVesnicana(World svet, Location location) {
-        var trader = (WanderingTrader) svet.spawnEntity(location, EntityType.WANDERING_TRADER);
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (!(commandSender instanceof Player)) return false;
+        var player = (Player) commandSender;
+        var trader = (WanderingTrader) player.getWorld().spawnEntity(player.getLocation(), EntityType.WANDERING_TRADER);
         trader.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1000000000, 999999999, true));
 
         //training
@@ -110,6 +113,7 @@ public final class Obchodnik {
         ocarovaneZlateJabko.addIngredient(new ItemStack(Material.GOLD_NUGGET, 50));
 
         trader.setRecipes(Lists.newArrayList(trainingSword, trainingHelmet, trainingChestPlate, trainingLeggins, trainingBoots, normalSword, chainMaleHelmet, chainMaleChestPlate, chainMaleLeggins, chainMaleBoots, proSword, plateHelmet, chestPlate, plateLeggins, plateBoots, gladiatorSword, gladiatorHelmet, gladiatorChestPlate, gladiatorLeggins, gladiatorBoots, stit, lapis, zlateJabko, ocarovaneZlateJabko));
-
+        return true;
     }
+
 }

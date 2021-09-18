@@ -1,6 +1,10 @@
 package devices;
 
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -10,7 +14,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import tovarny.JsonTovarnaNaVlny;
 
-public final class MonsterSwitch implements Listener {
+public final class MonsterSwitch implements Listener, CommandExecutor {
 
     private final static String SPAWNER_BLOK_DATA = "SPAWNER_BLOK_DATA";
     private final static String MONSTER_SWITCH_NAME = "Monster switch";
@@ -22,7 +26,6 @@ public final class MonsterSwitch implements Listener {
     public MonsterSwitch(Plugin plugin) {
         this.plugin = plugin;
     }
-
 
     @EventHandler
     public void spawnMonsters(PlayerInteractEvent e) {
@@ -44,16 +47,21 @@ public final class MonsterSwitch implements Listener {
         }
     }
 
-    public ItemStack createMonsterSwitch() {
+    public void reset() {
+        vlna = 1;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (!(commandSender instanceof Player)) return false;
+        var player = (Player) commandSender;
+
         var monsterSwitch = new ItemStack(Material.LEVER, 1);
         var itemMeta = monsterSwitch.getItemMeta();
         itemMeta.setDisplayName(MONSTER_SWITCH_NAME);
         monsterSwitch.setItemMeta(itemMeta);
+        player.getInventory().addItem(monsterSwitch);
         vlna = 1;
-        return monsterSwitch;
-    }
-
-    public void reset() {
-        vlna = 1;
+        return true;
     }
 }

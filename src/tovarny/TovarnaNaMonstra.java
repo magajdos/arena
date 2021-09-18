@@ -1,11 +1,13 @@
 package tovarny;
 
+import com.google.common.base.Strings;
 import com.google.gson.Gson;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -91,6 +93,12 @@ public class TovarnaNaMonstra {
             }
             zombie.setCustomName(ZOMBIE_NAME + " LVL " + level);
         }
+    }
+
+    public static boolean jeMonstrum(LivingEntity monstrum) {
+        var jmeno = monstrum.getCustomName();
+        if (Strings.isNullOrEmpty(jmeno)) return false;
+        return jmeno.startsWith(ZOMBIE_NAME);
     }
 
 }
