@@ -1,18 +1,19 @@
 package monstra;
 
 import com.google.common.collect.Lists;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 
 import java.util.List;
 
 public final class MonstraStav {
 
-    private final static List<Monster> MONSTRA = Lists.newArrayList();
+    private final static List<LivingEntity> MONSTRA = Lists.newArrayList();
 
     private MonstraStav() {
     }
 
-    public static void pridejMonstrum(Monster monster) {
+    public static void pridejMonstrum(LivingEntity monster) {
         MONSTRA.add(monster);
     }
 
@@ -23,7 +24,7 @@ public final class MonstraStav {
         return MONSTRA.isEmpty();
     }
 
-    public static void odstranMonstrum(Monster monster) {
+    public static void odstranMonstrum(LivingEntity monster) {
         MONSTRA.remove(monster);
     }
 }

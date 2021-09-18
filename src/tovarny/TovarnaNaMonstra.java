@@ -2,6 +2,7 @@ package tovarny;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
+import monstra.MonstraStav;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -92,6 +93,7 @@ public class TovarnaNaMonstra {
                 zombie.setHealth(health);
             }
             zombie.setCustomName(ZOMBIE_NAME + " LVL " + level);
+            MonstraStav.pridejMonstrum(zombie);
         }
     }
 

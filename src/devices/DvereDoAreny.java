@@ -1,8 +1,12 @@
 package devices;
 
-import monstra.MonstraStav;
+import com.google.common.collect.Lists;
 import org.bukkit.Material;
 import org.bukkit.block.data.type.Door;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -11,11 +15,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 
-public final class DvereDoAreny implements Listener {
+import java.util.List;
+
+public final class DvereDoAreny implements Listener, CommandExecutor {
 
     private Plugin plugin;
     public static final String JMENO = "Dvere do areny";
-    private  Door dvere;
+    private List<Door> dvere = Lists.newArrayList();
 
     public DvereDoAreny(Plugin plugin) {
         this.plugin = plugin;
@@ -35,25 +41,31 @@ public final class DvereDoAreny implements Listener {
     @EventHandler
     public void placeDvere(BlockPlaceEvent e) {
         if (JMENO.equals(e.getItemInHand().getItemMeta().getDisplayName())) {
-            var block = e.getBlockPlaced();
-            block.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
-            var horniCast = block.getWorld().getBlockAt(block.getLocation().add(0,1,0));
+            var dolniCast = e.getBlockPlaced();
+            dolniCast.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
+            var horniCast = dolniCast.getWorld().getBlockAt(dolniCast.getLocation().add(0,1,0));
             horniCast.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
-            block.setMetadata(JMENO, new FixedMetadataValue(plugin, true));
-            dvere = (Door) block.getBlockData();
-
+            dvere.add((Door) dolniCast.getBlockData());
+            for (Door door : dvere) {
+                door.setOpen(true);
+            }
         }
     }
 
-    public Door getDvere() {
+    public List<Door> getDvere() {
         return dvere;
     }
 
-    public ItemStack vytvorDvere() {
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (!(commandSender instanceof Player)) return false;
+        var player = (Player) commandSender;
+
         var dvere = new ItemStack(Material.OAK_DOOR, 1);
         var itemMeta = dvere.getItemMeta();
         itemMeta.setDisplayName(JMENO);
         dvere.setItemMeta(itemMeta);
-        return dvere;
+        player.getInventory().addItem(dvere);
+        return true;
     }
 }

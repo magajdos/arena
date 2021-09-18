@@ -13,7 +13,7 @@ package listenery;
 public class OdmenaZaZabitiMonstra implements Listener {
 
     @EventHandler
-    public static void deathOfMonsters(EntityDeathEvent deathEvent) {
+    public void deathOfMonsters(EntityDeathEvent deathEvent) {
         if (TovarnaNaMonstra.jeMonstrum(deathEvent.getEntity())) {
             deathEvent.getDrops().clear();
             deathEvent.getDrops().add(new ItemStack(Material.GOLD_NUGGET));
