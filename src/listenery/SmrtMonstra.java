@@ -1,22 +1,18 @@
 package listenery;
 
-import devices.DvereDoAreny;
+import zarizeni.dvere_areny.DvereAreny;
+import zarizeni.dvere_areny.DvereArenyListener;
 import monstra.MonstraStav;
-import org.bukkit.Material;
-import org.bukkit.block.data.type.Door;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
 import tovarny.TovarnaNaMonstra;
-
-import java.util.List;
 
 public class SmrtMonstra implements Listener {
 
-    private DvereDoAreny dvere;
+    private DvereAreny dvere;
 
-    public SmrtMonstra(DvereDoAreny dvere) {
+    public SmrtMonstra(DvereAreny dvere) {
         this.dvere = dvere;
     }
 

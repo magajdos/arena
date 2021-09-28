@@ -1,7 +1,6 @@
-package devices;
+package zarizeni;
 
 import org.bukkit.Material;
-import org.bukkit.block.data.type.Door;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,8 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import tovarny.JsonTovarnaNaVlny;
-
-import java.util.List;
+import zarizeni.dvere_areny.DvereAreny;
 
 public final class MonsterSwitch implements Listener, CommandExecutor {
 
@@ -23,11 +21,11 @@ public final class MonsterSwitch implements Listener, CommandExecutor {
     private final static String MONSTER_SWITCH_NAME = "Monster switch";
 
     private final Plugin plugin;
-    private final DvereDoAreny dvere;
+    private final DvereAreny dvere;
     private final JsonTovarnaNaVlny jsonTovarnaNaVlny = new JsonTovarnaNaVlny();
     private int vlna = 1;
 
-    public MonsterSwitch(DvereDoAreny dvere, Plugin plugin) {
+    public MonsterSwitch(DvereAreny dvere, Plugin plugin) {
         this.plugin = plugin;
         this.dvere = dvere;
     }
