@@ -6,8 +6,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-import java.net.http.WebSocket;
-
 public class PripojeniRespawn implements Listener {
 
     @EventHandler

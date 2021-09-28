@@ -1,6 +1,7 @@
 package devices;
 
 import org.bukkit.Material;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,17 +15,21 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import tovarny.JsonTovarnaNaVlny;
 
+import java.util.List;
+
 public final class MonsterSwitch implements Listener, CommandExecutor {
 
     private final static String SPAWNER_BLOK_DATA = "SPAWNER_BLOK_DATA";
     private final static String MONSTER_SWITCH_NAME = "Monster switch";
 
     private final Plugin plugin;
+    private final DvereDoAreny dvere;
     private final JsonTovarnaNaVlny jsonTovarnaNaVlny = new JsonTovarnaNaVlny();
     private int vlna = 1;
 
-    public MonsterSwitch(Plugin plugin) {
+    public MonsterSwitch(DvereDoAreny dvere, Plugin plugin) {
         this.plugin = plugin;
+        this.dvere = dvere;
     }
 
     @EventHandler
@@ -34,6 +39,7 @@ public final class MonsterSwitch implements Listener, CommandExecutor {
         var blockMetadata = block.getMetadata(SPAWNER_BLOK_DATA);
         if (!blockMetadata.isEmpty()) {
             if (vlna > jsonTovarnaNaVlny.pocet()) return; //konec
+            dvere.zavriDvere();
             jsonTovarnaNaVlny.vlna(block.getLocation(), vlna);
             vlna++;
         }

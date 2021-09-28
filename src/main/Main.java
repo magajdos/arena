@@ -5,7 +5,7 @@ import devices.MonsterSwitch;
 import listenery.OdmenaZaZabitiMonstra;
 import listenery.PripojeniRespawn;
 import listenery.SmrtMonstra;
-import listenery.VyspawnovaniMonstra;
+import monstra.MonstraStav;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,13 +31,12 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        var monsterSwitch = new MonsterSwitch(this);
         var dvereDoAreny = new DvereDoAreny(this);
+        var monsterSwitch = new MonsterSwitch(dvereDoAreny, this);
 
         getServer().getPluginManager().registerEvents(monsterSwitch, this);
         getServer().getPluginManager().registerEvents(new OdmenaZaZabitiMonstra(), this);
-        getServer().getPluginManager().registerEvents(new VyspawnovaniMonstra(dvereDoAreny.getDvere()), this);
-        getServer().getPluginManager().registerEvents(new SmrtMonstra(dvereDoAreny.getDvere()), this);
+        getServer().getPluginManager().registerEvents(new SmrtMonstra(dvereDoAreny), this);
         getServer().getPluginManager().registerEvents(new PripojeniRespawn(),this);
         getServer().getPluginManager().registerEvents(dvereDoAreny,this);
 
@@ -46,6 +45,6 @@ public class Main extends JavaPlugin {
         getCommand("+monsterSwitch").setExecutor(monsterSwitch);
         getCommand("+resetMonsterSwitch").setExecutor(new ResetSwitch(monsterSwitch));
         getCommand("+dvere").setExecutor(dvereDoAreny);
-
+        getCommand("+znicMonstra").setExecutor(new MonstraStav());
     }
 }

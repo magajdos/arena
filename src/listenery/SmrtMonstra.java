@@ -1,5 +1,6 @@
 package listenery;
 
+import devices.DvereDoAreny;
 import monstra.MonstraStav;
 import org.bukkit.Material;
 import org.bukkit.block.data.type.Door;
@@ -13,19 +14,17 @@ import java.util.List;
 
 public class SmrtMonstra implements Listener {
 
-    private List<Door> dvere;
+    private DvereDoAreny dvere;
 
-    public SmrtMonstra(List<Door> dvere) {
+    public SmrtMonstra(DvereDoAreny dvere) {
         this.dvere = dvere;
     }
 
     @EventHandler
     public void deathOfMonsters(EntityDeathEvent deathEvent) {
-        if (TovarnaNaMonstra.jeMonstrum(deathEvent.getEntity())) {
-            MonstraStav.odstranMonstrum(deathEvent.getEntity());
+        if (TovarnaNaMonstra.jeMonstrum(deathEvent.getEntity()))
             if (MonstraStav.jsouMonstraMrtva()) {
-                dvere.forEach(door -> door.setOpen(true));
+                dvere.otevriDvere();
             }
-        }
     }
 }
