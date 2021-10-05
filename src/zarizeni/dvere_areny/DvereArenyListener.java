@@ -32,7 +32,7 @@ public final class DvereArenyListener implements Listener {
     }
 
     @EventHandler
-    public void placeDvere(BlockPlaceEvent e) {
+    public void polozDvere(BlockPlaceEvent e) {
         if (JMENO.equals(e.getItemInHand().getItemMeta().getDisplayName())) {
             Block dolniCastDveri = e.getBlockPlaced();
             Block horniCastDveri = dolniCastDveri.getWorld().getBlockAt(dolniCastDveri.getLocation().add(0, 1, 0));

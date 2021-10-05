@@ -2,35 +2,45 @@ package tovarny;
 
 import org.bukkit.Location;
 
-public class TovarnaNaVlny {
-    public void wave1 (Location location){
-        TovarnaNaMonstra tovarnaNaMonstra = new TovarnaNaMonstra();
-        tovarnaNaMonstra.createZombie(location,1,6);
-        tovarnaNaMonstra.createZombie(location,2,3);
-        tovarnaNaMonstra.createZombie(location,3,1);
+//Neni pouzito, martinkova varianta
+public final class TovarnaNaVlny {
+
+    private final TovarnaNaZombiky tovarnaNaZombiky = new TovarnaNaZombiky();
+    private int pocitadlo = 1;
+
+    public void dalsiVlna(Location location) {
+        switch (pocitadlo) {
+            case 1:
+                tovarnaNaZombiky.createZombie(location, 1, 6);
+                tovarnaNaZombiky.createZombie(location, 2, 3);
+                tovarnaNaZombiky.createZombie(location, 3, 1);
+                break;
+            case 2:
+                tovarnaNaZombiky.createZombie(location, 1, 8);
+                tovarnaNaZombiky.createZombie(location, 2, 4);
+                tovarnaNaZombiky.createZombie(location, 3, 2);
+                tovarnaNaZombiky.createZombie(location, 4, 1);
+                break;
+            case 3:
+                tovarnaNaZombiky.createZombie(location, 1, 12);
+                tovarnaNaZombiky.createZombie(location, 2, 3);
+                tovarnaNaZombiky.createZombie(location, 3, 5);
+                tovarnaNaZombiky.createZombie(location, 4, 3);
+                tovarnaNaZombiky.createZombie(location, 5, 1);
+                break;
+            case 4:
+                tovarnaNaZombiky.createZombie(location, 1, 10);
+                tovarnaNaZombiky.createZombie(location, 2, 6);
+                tovarnaNaZombiky.createZombie(location, 3, 4);
+                tovarnaNaZombiky.createZombie(location, 4, 3);
+                tovarnaNaZombiky.createZombie(location, 5, 2);
+                tovarnaNaZombiky.createZombie(location, 6, 1);
+                break;
+        }
+        pocitadlo++;
     }
-    public void wave2 (Location location) {
-        TovarnaNaMonstra tovarnaNaMonstra = new TovarnaNaMonstra();
-        tovarnaNaMonstra.createZombie(location, 1, 8);
-        tovarnaNaMonstra.createZombie(location, 2, 4);
-        tovarnaNaMonstra.createZombie(location, 3, 2);
-        tovarnaNaMonstra.createZombie(location, 4, 1);
-    }
-    public void wave3 (Location location){
-        TovarnaNaMonstra tovarnaNaMonstra = new TovarnaNaMonstra();
-        tovarnaNaMonstra.createZombie(location,1,12);
-        tovarnaNaMonstra.createZombie(location,2,3);
-        tovarnaNaMonstra.createZombie(location,3,5);
-        tovarnaNaMonstra.createZombie(location,4,3);
-        tovarnaNaMonstra.createZombie(location,5,1);
-    }
-    public void wave4 (Location location){
-        TovarnaNaMonstra tovarnaNaMonstra = new TovarnaNaMonstra();
-        tovarnaNaMonstra.createZombie(location,1,10);
-        tovarnaNaMonstra.createZombie(location,2,6);
-        tovarnaNaMonstra.createZombie(location,3,4);
-        tovarnaNaMonstra.createZombie(location,4,3);
-        tovarnaNaMonstra.createZombie(location,5,2);
-        tovarnaNaMonstra.createZombie(location,6,1);
+
+    public void reset() {
+        pocitadlo = 1;
     }
 }

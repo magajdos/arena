@@ -15,51 +15,34 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 
-public class TovarnaNaMonstra {
+public final class TovarnaNaZombiky {
 
     public final static String ZOMBIE_NAME = "Zombie";
     //mapujeme level zombie na definici zombie
-    private Map<Integer, MonsterDefinition> zombies = new HashMap<>();
+    private MonsterDefinition[]  definiceZombiku;
 
-    private static class MonsterDefinition {
-        private Integer level;
-        private String weapon;
-        private String helmet;
-        private String chestPlate;
-        private String legins;
-        private String boots;
-        private Integer regeneration;
-        private Integer strength;
-        private Integer speed;
-        private Integer health;
-    }
-
-    public TovarnaNaMonstra() {
+    public TovarnaNaZombiky() {
         //nahrajeme zombie z jsonu
         var is = getClass().getResourceAsStream("/res/zombies.json");
+        if (is == null) throw new RuntimeException("Nenalezen soubor s definici zombiku");
         Gson gson = new Gson();
-        MonsterDefinition[] zombiesDefinitions = gson.fromJson(new InputStreamReader(is), MonsterDefinition[].class);
-
-        for (var zombieDefinition : zombiesDefinitions) {
-            zombies.put(zombieDefinition.level, zombieDefinition);
-        }
+        definiceZombiku = gson.fromJson(new InputStreamReader(is), MonsterDefinition[].class);
     }
 
     public void createZombie(Location location, int level, int pocet) {
         for (int i = 0; i < pocet; i++) {
             Zombie zombie = (Zombie) location.getWorld().spawnEntity(location, EntityType.ZOMBIE);
-            var zbran = zombies.get(level).weapon;
-            var helma = zombies.get(level).helmet;
-            var brneni = zombies.get(level).chestPlate;
-            var kalhoty = zombies.get(level).legins;
-            var boty = zombies.get(level).boots;
-            var regenerace = zombies.get(level).regeneration;
-            var speed = zombies.get(level).speed;
-            var sila = zombies.get(level).strength;
-            var health = zombies.get(level).health;
+            var definiceZombika = definiceZombiku[level - 1];
+            var zbran = definiceZombika.weapon;
+            var helma = definiceZombika.helmet;
+            var brneni = definiceZombika.chestPlate;
+            var kalhoty = definiceZombika.legins;
+            var boty = definiceZombika.boots;
+            var regenerace = definiceZombika.regeneration;
+            var speed = definiceZombika.speed;
+            var sila = definiceZombika.strength;
+            var health = definiceZombika.health;
 
             if (zbran != null) {
                 zombie.getEquipment().setItemInMainHand(new ItemStack(Material.valueOf(zbran)));
