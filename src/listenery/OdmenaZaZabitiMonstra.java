@@ -5,7 +5,7 @@ package listenery;
         import org.bukkit.event.Listener;
         import org.bukkit.event.entity.EntityDeathEvent;
         import org.bukkit.inventory.ItemStack;
-        import tovarny.TovarnaNaZombiky;
+        import monstra.TovarnaNaZombiky;
 
 public class OdmenaZaZabitiMonstra implements Listener {
 

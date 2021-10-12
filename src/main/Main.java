@@ -1,6 +1,7 @@
 package main;
 
-import tovarny.TovarnaNaVlny;
+import monstra.VlnyMonster;
+import uloziste_dat.Uloziste;
 import zarizeni.dvere_areny.DvereAreny;
 import zarizeni.dvere_areny.DvereArenyCommands;
 import zarizeni.dvere_areny.DvereArenyListener;
@@ -12,16 +13,17 @@ import listenery.PripojeniRespawn;
 import listenery.SmrtMonstra;
 import monstra.MonstraStav;
 import org.bukkit.plugin.java.JavaPlugin;
-import tovarny.Obchodnik;
+import commands.Obchodnik;
 
 public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        var tovarnaNaVlny = new TovarnaNaVlny();
+        var tovarnaNaVlny = new VlnyMonster();
         var dvereAreny = new DvereAreny(this);
+        var uloziste = new Uloziste(getServer().getWorlds().get(0), this);
         var dvereArenyListener = new DvereArenyListener(dvereAreny, this);
-        var monsterSwitch = new MonsterSwitchListener(dvereAreny, tovarnaNaVlny, this);
+        var monsterSwitch = new MonsterSwitchListener(dvereAreny, tovarnaNaVlny, uloziste, this);
 
         //eventy
         getServer().getPluginManager().registerEvents(monsterSwitch, this);

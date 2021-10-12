@@ -15,7 +15,8 @@ import static tovarny.TovarnaNaZbrane.HEALING_SWORD;
 public class Zbrane implements Listener {
 
     @EventHandler
-    public static void frozenSword(EntityDamageByEntityEvent event) {
+    public static void zbraneEvent(EntityDamageByEntityEvent event) {
+
         if (!(event.getDamager() instanceof Player)) return;
         var player = (Player) event.getDamager();
         var entita = event.getEntity();
@@ -27,9 +28,10 @@ public class Zbrane implements Listener {
         if (FROZEN_SWORD.equals(vecVPraveRuce)) {
             zijciEntita.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5, 3, true));
         }
+
         //lecici mec
         if (HEALING_SWORD.equals(vecVPraveRuce)) {
-            zijciEntita.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5, 3, true));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 5, 3, true));
         }
     }
 }

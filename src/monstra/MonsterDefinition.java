@@ -1,4 +1,4 @@
-package tovarny;
+package monstra;
 
 /** Trida pro nacitani definic monster z JSON souboru */
 final class MonsterDefinition {

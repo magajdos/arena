@@ -5,7 +5,7 @@ import monstra.MonstraStav;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import tovarny.TovarnaNaZombiky;
+import monstra.TovarnaNaZombiky;
 
 public class SmrtMonstra implements Listener {
 

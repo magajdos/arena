@@ -1,4 +1,4 @@
-package tovarny;
+package monstra;
 
 import com.google.common.base.Strings;
 import com.google.gson.Gson;
@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 
 public final class TovarnaNaZombiky {
 
-    public final static String ZOMBIE_NAME = "Zombie";
+    private final static String ZOMBIE_NAME = "Zombie";
     //mapujeme level zombie na definici zombie
     private MonsterDefinition[]  definiceZombiku;
 

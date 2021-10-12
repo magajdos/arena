@@ -4,19 +4,19 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import tovarny.TovarnaNaVlny;
+import monstra.VlnyMonster;
 
 public class ResetSwitchCommand implements CommandExecutor {
 
-    private final TovarnaNaVlny tovarnaNaVlny;
+    private final VlnyMonster vlnyMonster;
 
-    public ResetSwitchCommand(TovarnaNaVlny tovarnaNaVlny) {
-        this.tovarnaNaVlny = tovarnaNaVlny;
+    public ResetSwitchCommand(VlnyMonster vlnyMonster) {
+        this.vlnyMonster = vlnyMonster;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        tovarnaNaVlny.reset();
+        vlnyMonster.reset();
         return true;
     }
 }

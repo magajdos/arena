@@ -175,28 +175,4 @@ public class TovarnaNaZbroje {
         gladiatorBoots.setItemMeta(itemMeta);
         return gladiatorBoots;
     }
-
-    public ItemStack vyrobHealingAmor(){
-        var healingChestPlate = new ItemStack(Material.LEATHER_CHESTPLATE);
-        var itemMeta = healingChestPlate.getItemMeta();
-        itemMeta.setUnbreakable(true);
-        itemMeta.setDisplayName("HEALING CHESTPLATE");
-        AttributeModifier attributeModifier = new AttributeModifier("Armor", 6, AttributeModifier.Operation.ADD_NUMBER);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, attributeModifier);
-        healingChestPlate.setItemMeta(itemMeta);
-        return healingChestPlate;
-    }
-
-    public ItemStack vyrobMagmaArmor(){
-        var magmaChestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-        magmaChestplate.addEnchantment(Enchantment.DURABILITY,1);
-        var itemMeta = magmaChestplate.getItemMeta();
-        itemMeta.setUnbreakable(true);
-        itemMeta.setDisplayName("MAGMA CHESTPLATE");
-        AttributeModifier attributeModifier = new AttributeModifier("Armor", 8, AttributeModifier.Operation.ADD_NUMBER);
-        itemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, attributeModifier);
-        magmaChestplate.setItemMeta(itemMeta);
-        return magmaChestplate;
-    }
-
 }

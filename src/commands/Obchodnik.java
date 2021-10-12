@@ -1,4 +1,4 @@
-package tovarny;
+package commands;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Material;
@@ -12,6 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import tovarny.TovarnaNaZbrane;
+import tovarny.TovarnaNaZbroje;
 
 public final class Obchodnik implements CommandExecutor {
     private final TovarnaNaZbrane tovarnaNaZbrane;
@@ -30,7 +32,6 @@ public final class Obchodnik implements CommandExecutor {
         trader.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1000000000, 999999999, true));
 
         //training
-
         MerchantRecipe trainingSword = new MerchantRecipe(tovarnaNaZbrane.vyrobTrainingSword(), 999);
         trainingSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 1));
 
@@ -47,7 +48,6 @@ public final class Obchodnik implements CommandExecutor {
         trainingBoots.addIngredient(new ItemStack(Material.GOLD_NUGGET, 10));
 
         //nomal
-
         MerchantRecipe normalSword = new MerchantRecipe(tovarnaNaZbrane.vyrobNormalSword(), 999);
         normalSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
@@ -64,7 +64,6 @@ public final class Obchodnik implements CommandExecutor {
         chainMaleBoots.addIngredient(new ItemStack(Material.GOLD_NUGGET, 20));
 
         //pro
-
         MerchantRecipe proSword = new MerchantRecipe(tovarnaNaZbrane.vyrobProSword(), 999);
         proSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 40));
 
@@ -81,7 +80,6 @@ public final class Obchodnik implements CommandExecutor {
         plateBoots.addIngredient(new ItemStack(Material.GOLD_NUGGET, 30));
 
         //Gladiator
-
         MerchantRecipe gladiatorSword = new MerchantRecipe(tovarnaNaZbrane.vyrobGladiatorSword(), 999);
         gladiatorSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 60));
 
@@ -112,7 +110,19 @@ public final class Obchodnik implements CommandExecutor {
         MerchantRecipe ocarovaneZlateJabko = new MerchantRecipe(tovarnaNaZbrane.vyrobOcarovaneZlateJablko(), 9999);
         ocarovaneZlateJabko.addIngredient(new ItemStack(Material.GOLD_NUGGET, 50));
 
-        trader.setRecipes(Lists.newArrayList(trainingSword, trainingHelmet, trainingChestPlate, trainingLeggins, trainingBoots, normalSword, chainMaleHelmet, chainMaleChestPlate, chainMaleLeggins, chainMaleBoots, proSword, plateHelmet, chestPlate, plateLeggins, plateBoots, gladiatorSword, gladiatorHelmet, gladiatorChestPlate, gladiatorLeggins, gladiatorBoots, stit, lapis, zlateJabko, ocarovaneZlateJabko));
+        //kouzelne zbrane
+        MerchantRecipe frozenSword = new MerchantRecipe(tovarnaNaZbrane.vyrobFrozenSword(), 9999);
+        frozenSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 100));
+
+        //kouzelne zbrane
+        MerchantRecipe healingSword = new MerchantRecipe(tovarnaNaZbrane.vyrobHealingSword(), 9999);
+        frozenSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 100));
+
+        trader.setRecipes(Lists.newArrayList
+                (trainingSword, trainingHelmet, trainingChestPlate, trainingLeggins, trainingBoots, normalSword, chainMaleHelmet,
+                        chainMaleChestPlate, chainMaleLeggins, chainMaleBoots, proSword, plateHelmet, chestPlate, plateLeggins,
+                        plateBoots, gladiatorSword, gladiatorHelmet, gladiatorChestPlate, gladiatorLeggins, gladiatorBoots, stit,
+                        lapis, zlateJabko, ocarovaneZlateJabko, frozenSword, healingSword));
         return true;
     }
 
