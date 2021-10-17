@@ -4,11 +4,14 @@ import com.google.common.collect.Lists;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public final class MonstraStav implements CommandExecutor {
 
@@ -19,9 +22,19 @@ public final class MonstraStav implements CommandExecutor {
     }
 
     public static boolean jsouMonstraMrtva() {
-        for (var monstrum : MONSTRA) {
-            if (monstrum.isDead()) MONSTRA.remove(monstrum);
-        }
+        MONSTRA.removeIf(Entity::isDead);
+
+//        MONSTRA.removeIf(entity -> entity.isDead());
+//        MONSTRA.removeIf(entity -> {
+//            System.out.println("entity  je mrtva ?" + entity.isDead());
+//            return entity.isDead();
+//        });
+//        MONSTRA.removeIf(new Predicate<LivingEntity>() {
+//            @Override
+//            public boolean test(LivingEntity livingEntity) {
+//                return livingEntity.isDead();
+//            }
+//        });
         return MONSTRA.isEmpty();
     }
 

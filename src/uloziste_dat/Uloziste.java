@@ -58,8 +58,8 @@ public final class Uloziste {
     public List<Location> nacti(String key) {
         var container = uloziste.getPersistentDataContainer();
         int[] souradnice = container.get(new NamespacedKey(plugin, key), PersistentDataType.INTEGER_ARRAY);
-        if (souradnice == null) return Collections.emptyList();
         List<Location> locations = new ArrayList<>();
+        if (souradnice == null) return locations;
         for (int i = 0; i < souradnice.length; i= i + 3) {
             locations.add(new Location(world, souradnice[i], souradnice[i+1], souradnice[i+2]));
         }

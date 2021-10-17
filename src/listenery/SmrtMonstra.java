@@ -1,11 +1,11 @@
 package listenery;
 
-import zarizeni.dvere_areny.DvereAreny;
 import monstra.MonstraStav;
+import monstra.TovarnaNaZombiky;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import monstra.TovarnaNaZombiky;
+import zarizeni.dvere_areny.DvereAreny;
 
 public class SmrtMonstra implements Listener {
 
