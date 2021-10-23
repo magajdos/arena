@@ -8,7 +8,7 @@ import uloziste_dat.Uloziste;
 
 import java.util.List;
 
-import static zarizeni.monster_switch.MonsterSwitchListener.SPAWNER_BLOK_DATA;
+import static zarizeni.monster_switch.MonsterSwitchListener.MONSTER_SWITCH_ZNACKA;
 
 public final class InicializaceMonsterSwitche {
 
@@ -23,9 +23,9 @@ public final class InicializaceMonsterSwitche {
     }
 
     public void inicializace() {
-        List<Location> locations = uloziste.nacti(SPAWNER_BLOK_DATA);
+        List<Location> locations = uloziste.nacti(MONSTER_SWITCH_ZNACKA);
         for (var location : locations) {
-            world.getBlockAt(location).setMetadata(SPAWNER_BLOK_DATA, new FixedMetadataValue(plugin, true));
+            world.getBlockAt(location).setMetadata(MONSTER_SWITCH_ZNACKA, new FixedMetadataValue(plugin, true));
         }
     }
 }

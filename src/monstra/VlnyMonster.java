@@ -3,7 +3,6 @@ package monstra;
 import monstra.TovarnaNaZombiky;
 import org.bukkit.Location;
 
-//Neni pouzito, martinkova varianta
 public final class VlnyMonster {
 
     private final TovarnaNaZombiky tovarnaNaZombiky = new TovarnaNaZombiky();

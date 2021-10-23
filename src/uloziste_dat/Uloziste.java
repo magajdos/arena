@@ -1,8 +1,6 @@
 package uloziste_dat;
 
-import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
-import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,11 +11,9 @@ import org.bukkit.block.TileState;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public final class Uloziste {
 
@@ -47,6 +43,18 @@ public final class Uloziste {
         }
         container.set(namespaceKey, PersistentDataType.INTEGER_ARRAY, Ints.toArray(seznam));
         uloziste.update(true, false);
+    }
+
+    public void pridej(String key, Location location) {
+        var locations = nacti(key);
+        locations.add(location);
+        uloz(key, locations);
+    }
+
+    public void odeber(String key, Location location) {
+        var locations = nacti(key);
+        locations.remove(location);
+        uloz(key, locations);
     }
 
     public void smaz(String key) {
