@@ -7,6 +7,7 @@ import org.bukkit.plugin.Plugin;
 import uloziste_dat.Uloziste;
 
 import java.util.List;
+import java.util.Set;
 
 import static zarizeni.monster_switch.MonsterSwitchListener.MONSTER_SWITCH_ZNACKA;
 
@@ -23,7 +24,7 @@ public final class InicializaceMonsterSwitche {
     }
 
     public void inicializace() {
-        List<Location> locations = uloziste.nacti(MONSTER_SWITCH_ZNACKA);
+        Set<Location> locations = uloziste.nacti(MONSTER_SWITCH_ZNACKA);
         for (var location : locations) {
             world.getBlockAt(location).setMetadata(MONSTER_SWITCH_ZNACKA, new FixedMetadataValue(plugin, true));
         }

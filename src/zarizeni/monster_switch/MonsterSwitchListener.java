@@ -1,7 +1,10 @@
 package zarizeni.monster_switch;
 
+import com.google.common.collect.Sets;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -15,7 +18,7 @@ import static zarizeni.monster_switch.MonsterSwitchCommand.MONSTER_SWITCH_NAME;
 
 public final class MonsterSwitchListener implements Listener {
 
-    final static String MONSTER_SWITCH_ZNACKA = "SPAWNER_BLOK_DATA";
+    final static String MONSTER_SWITCH_ZNACKA = "MONSTER_SWITCH_ZNACKA";
 
     private final Plugin plugin;
     private final DvereAreny dvere;
@@ -31,6 +34,9 @@ public final class MonsterSwitchListener implements Listener {
 
     @EventHandler
     public void spawnMonsters(PlayerInteractEvent e) {
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return; //udalost PlayerInteractEvent se pusti i pri zniceni a polozeni bloku, timto zabranime vygenerovani monster pro zniceni
+        if (e.getClickedBlock().getType() != Material.LEVER) return; // zabranime pokracovani pri olozeni blocku
+
         var block = e.getClickedBlock();
         if (block == null) return;
         var blockMetadata = block.getMetadata(MONSTER_SWITCH_ZNACKA);
@@ -53,13 +59,14 @@ public final class MonsterSwitchListener implements Listener {
     public void znicMonsterSwitch(BlockBreakEvent e) {
         var blockMetadata = e.getBlock().getMetadata(MONSTER_SWITCH_ZNACKA);
         if (!blockMetadata.isEmpty()) {
+            e.getBlock().removeMetadata(MONSTER_SWITCH_ZNACKA, plugin);
             uloziste.odeber(MONSTER_SWITCH_ZNACKA, e.getBlock().getLocation());
             opravSpinace();
         }
     }
 
     private void opravSpinace() {
-        var lokaceSpinacu = uloziste.nacti(MONSTER_SWITCH_ZNACKA);
+        var lokaceSpinacu = Sets.newHashSet(uloziste.nacti(MONSTER_SWITCH_ZNACKA));
         for (var lokaceSpinace : lokaceSpinacu) {
             var metadataSpinace = lokaceSpinace.getBlock().getMetadata(MONSTER_SWITCH_ZNACKA);
             if (metadataSpinace.isEmpty()) {

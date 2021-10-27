@@ -116,7 +116,7 @@ public final class Obchodnik implements CommandExecutor {
 
         //kouzelne zbrane
         MerchantRecipe healingSword = new MerchantRecipe(tovarnaNaZbrane.vyrobHealingSword(), 9999);
-        frozenSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 100));
+        healingSword.addIngredient(new ItemStack(Material.GOLD_NUGGET, 100));
 
         trader.setRecipes(Lists.newArrayList
                 (trainingSword, trainingHelmet, trainingChestPlate, trainingLeggins, trainingBoots, normalSword, chainMaleHelmet,

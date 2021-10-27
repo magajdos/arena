@@ -4,11 +4,14 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.meta.BlockDataMeta;
 import org.bukkit.plugin.Plugin;
 
-import static zarizeni.dvere_areny.DvereAreny.JMENO;
+import static zarizeni.dvere_areny.DvereAreny.DVERE_DO_ARENY_ZNACKA;
+import static zarizeni.dvere_areny.DvereAreny.JMENO_DVERI_DO_ARENY;
 
 public final class DvereArenyListener implements Listener {
 
@@ -25,7 +28,7 @@ public final class DvereArenyListener implements Listener {
     public void otevriDvere(PlayerInteractEvent event) {
         var block = event.getClickedBlock();
         if (block == null || event.getAction() == Action.LEFT_CLICK_BLOCK) return;
-        var blockMetadata = block.getMetadata(JMENO);
+        var blockMetadata = block.getMetadata(JMENO_DVERI_DO_ARENY);
         if (!blockMetadata.isEmpty()) {
             event.setCancelled(true);
         }
@@ -33,7 +36,7 @@ public final class DvereArenyListener implements Listener {
 
     @EventHandler
     public void polozDvere(BlockPlaceEvent e) {
-        if (JMENO.equals(e.getItemInHand().getItemMeta().getDisplayName())) {
+        if (JMENO_DVERI_DO_ARENY.equals(e.getItemInHand().getItemMeta().getDisplayName())) {
             Block dolniCastDveri = e.getBlockPlaced();
             Block horniCastDveri = dolniCastDveri.getWorld().getBlockAt(dolniCastDveri.getLocation().add(0, 1, 0));
             dvereAreny.pridejDvere(dolniCastDveri);
@@ -42,5 +45,14 @@ public final class DvereArenyListener implements Listener {
         }
     }
 
-
+    @EventHandler
+    public void rozbijDvere(BlockBreakEvent e) {
+        var blockMetadata = e.getBlock().getMetadata(DVERE_DO_ARENY_ZNACKA);
+        if (!blockMetadata.isEmpty()) {
+            var dolniCast = e.getBlock();
+            var horniCast = dolniCast.getWorld().getBlockAt(dolniCast.getLocation().add(0, 1, 0));
+            dvereAreny.odeber(dolniCast);
+            dvereAreny.odeber(horniCast);
+        }
+    }
 }

@@ -11,9 +11,8 @@ import org.bukkit.block.TileState;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.*;
 
 public final class Uloziste {
 
@@ -32,7 +31,7 @@ public final class Uloziste {
         this.plugin = plugin;
     }
 
-    public void uloz(String key, List<Location> locations) {
+    public void uloz(String key, Set<Location> locations) {
         PersistentDataContainer container = uloziste.getPersistentDataContainer();
         var namespaceKey = new NamespacedKey(plugin, key);
         List<Integer> seznam = new ArrayList<>();//Lists.newArrayList();
@@ -63,10 +62,10 @@ public final class Uloziste {
         uloziste.update(true, false);
     }
 
-    public List<Location> nacti(String key) {
+    public Set<Location> nacti(String key) {
         var container = uloziste.getPersistentDataContainer();
         int[] souradnice = container.get(new NamespacedKey(plugin, key), PersistentDataType.INTEGER_ARRAY);
-        List<Location> locations = new ArrayList<>();
+        Set<Location> locations = new HashSet<>();
         if (souradnice == null) return locations;
         for (int i = 0; i < souradnice.length; i= i + 3) {
             locations.add(new Location(world, souradnice[i], souradnice[i+1], souradnice[i+2]));

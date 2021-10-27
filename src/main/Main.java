@@ -5,6 +5,7 @@ import uloziste_dat.Uloziste;
 import zarizeni.dvere_areny.DvereAreny;
 import zarizeni.dvere_areny.DvereArenyCommands;
 import zarizeni.dvere_areny.DvereArenyListener;
+import zarizeni.dvere_areny.InicializaceDveriDoAreny;
 import zarizeni.monster_switch.InicializaceMonsterSwitche;
 import zarizeni.monster_switch.ResetSwitchCommand;
 import zarizeni.monster_switch.MonsterSwitchCommand;
@@ -22,12 +23,12 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         var world = getServer().getWorlds().get(0);
         var tovarnaNaVlny = new VlnyMonster();
-        var dvereAreny = new DvereAreny(this);
         var uloziste = new Uloziste(world, this);
+        var dvereAreny = new DvereAreny(this, uloziste);
         var dvereArenyListener = new DvereArenyListener(dvereAreny, this);
         var monsterSwitch = new MonsterSwitchListener(dvereAreny, tovarnaNaVlny, uloziste, this);
         new InicializaceMonsterSwitche(uloziste, world, this).inicializace();
-
+        new InicializaceDveriDoAreny(dvereAreny, uloziste).inicializace();
         //eventy
         getServer().getPluginManager().registerEvents(monsterSwitch, this);
         getServer().getPluginManager().registerEvents(new OdmenaZaZabitiMonstra(), this);
