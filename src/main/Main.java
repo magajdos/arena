@@ -1,6 +1,9 @@
 package main;
 
+import commands.MecNaObchodnika;
+import listenery.ObchodnikNesmrtelnost;
 import monstra.VlnyMonster;
+import tovarny.TovarnaNaZbrane;
 import uloziste_dat.Uloziste;
 import zarizeni.dvere_areny.DvereAreny;
 import zarizeni.dvere_areny.DvereArenyCommands;
@@ -21,6 +24,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         var world = getServer().getWorlds().get(0);
         var tovarnaNaVlny = new VlnyMonster();
         var uloziste = new Uloziste(world, this);
@@ -29,12 +33,15 @@ public class Main extends JavaPlugin {
         var monsterSwitch = new MonsterSwitchListener(dvereAreny, tovarnaNaVlny, uloziste, this);
         new InicializaceMonsterSwitche(uloziste, world, this).inicializace();
         new InicializaceDveriDoAreny(dvereAreny, uloziste).inicializace();
-        //eventy
+
+        //listenery
         getServer().getPluginManager().registerEvents(monsterSwitch, this);
         getServer().getPluginManager().registerEvents(new OdmenaZaZabitiMonstra(), this);
         getServer().getPluginManager().registerEvents(new SmrtMonstra(dvereAreny), this);
-        getServer().getPluginManager().registerEvents(new PripojeniRespawn(),this);
-        getServer().getPluginManager().registerEvents(dvereArenyListener,this);
+        getServer().getPluginManager().registerEvents(new PripojeniRespawn(), this);
+        getServer().getPluginManager().registerEvents(dvereArenyListener, this);
+        getServer().getPluginManager().registerEvents(new ObchodnikNesmrtelnost(), this);
+
 
         //commandy
         getCommand("+obchodnik").setExecutor(new Obchodnik());
@@ -42,5 +49,7 @@ public class Main extends JavaPlugin {
         getCommand("+resetMonsterSwitch").setExecutor(new ResetSwitchCommand(tovarnaNaVlny));
         getCommand("+dvere").setExecutor(new DvereArenyCommands());
         getCommand("+znicMonstra").setExecutor(new MonstraStav());
+        getCommand("+mecNaObchodnika").setExecutor(new MecNaObchodnika());
+
     }
 }

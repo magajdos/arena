@@ -11,6 +11,7 @@ public class TovarnaNaZbrane {
     public static final String FROZEN_SWORD = "FROZEN SWORD";
     public static final String HEALING_SWORD = "HEALING SWORD";
 
+
     //NORMALNI ZBRANE
     public ItemStack vyrobTrainingSword() {
         var trainingSword = new ItemStack(Material.WOODEN_SWORD, 1);
@@ -99,4 +100,6 @@ public class TovarnaNaZbrane {
         healingSword.setItemMeta(itemMeta);
         return healingSword;
     }
+
+
 }
