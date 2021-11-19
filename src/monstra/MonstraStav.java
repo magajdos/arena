@@ -1,54 +1,36 @@
 package monstra;
 
-import com.google.common.collect.Lists;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
+import com.google.common.base.Strings;
+import org.bukkit.World;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public final class MonstraStav implements CommandExecutor {
+import static monstra.TovarnaNaZombiky.ZOMBIE_NAME;
 
-    private final static List<LivingEntity> MONSTRA = Lists.newArrayList();
+public final class MonstraStav {
 
-    public static void pridejMonstrum(LivingEntity monster) {
-        MONSTRA.add(monster);
+    private final World world;
+
+    public MonstraStav(World world) {
+        this.world = world;
     }
 
-    public static boolean jsouMonstraMrtva() {
-        MONSTRA.removeIf(Entity::isDead);
-
-//        MONSTRA.removeIf(entity -> entity.isDead());
-//        MONSTRA.removeIf(entity -> {
-//            System.out.println("entity  je mrtva ?" + entity.isDead());
-//            return entity.isDead();
-//        });
-//        MONSTRA.removeIf(new Predicate<LivingEntity>() {
-//            @Override
-//            public boolean test(LivingEntity livingEntity) {
-//                return livingEntity.isDead();
-//            }
-//        });
-        return MONSTRA.isEmpty();
+    public boolean jsouMonstraMrtva() {
+        return getMonsters().isEmpty();
     }
 
-    public static void odstranMonstrum(LivingEntity monster) {
-        MONSTRA.remove(monster);
+    public List<LivingEntity> getMonsters() {
+        return world.getLivingEntities().stream()
+                .filter(entity -> jeMonstrum(entity))
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        //takto to je kvuli soucastne modifikaci MONSTRA listu pri smrti mosntra
-        while (!MONSTRA.isEmpty()) {
-            var monstrum = MONSTRA.remove(0);
-            monstrum.damage(2000);
-        }
-        return true;
+    public boolean jeMonstrum(LivingEntity monstrum) {
+        var jmeno = monstrum.getCustomName();
+        if (Strings.isNullOrEmpty(jmeno)) return false;
+        return jmeno.startsWith(ZOMBIE_NAME);
     }
+
 }

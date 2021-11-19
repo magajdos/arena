@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Zombie;
@@ -14,20 +15,27 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
-public final class TovarnaNaZombiky {
+final class TovarnaNaZombiky {
 
-    private final static String ZOMBIE_NAME = "Zombie";
+    public final static String ZOMBIE_NAME = "Zombie";
     //mapujeme level zombie na definici zombie
     private MonsterDefinition[]  definiceZombiku;
 
-    public TovarnaNaZombiky() {
+    public TovarnaNaZombiky(File dataAdresar) {
         //nahrajeme zombie z jsonu
-        var is = getClass().getResourceAsStream("/res/zombies.json");
-        if (is == null) throw new RuntimeException("Nenalezen soubor s definici zombiku");
+        String pathToJsonDefinition = dataAdresar.getPath() + "/zombies.json";
+        String definiceZombikuJson = null;
+        try {
+            definiceZombikuJson = FileUtils.readFileToString(new File(pathToJsonDefinition), "UTF-8");
+        } catch (IOException e) {
+            throw new RuntimeException("Nenalezen soubor s definici zombiku: " + pathToJsonDefinition);
+        }
         Gson gson = new Gson();
-        definiceZombiku = gson.fromJson(new InputStreamReader(is), MonsterDefinition[].class);
+        definiceZombiku = gson.fromJson(definiceZombikuJson, MonsterDefinition[].class);
     }
 
     public void createZombie(Location location, int level, int pocet) {
@@ -76,14 +84,6 @@ public final class TovarnaNaZombiky {
                 zombie.setHealth(health);
             }
             zombie.setCustomName(ZOMBIE_NAME + " LVL " + level);
-            MonstraStav.pridejMonstrum(zombie);
         }
     }
-
-    public static boolean jeMonstrum(LivingEntity monstrum) {
-        var jmeno = monstrum.getCustomName();
-        if (Strings.isNullOrEmpty(jmeno)) return false;
-        return jmeno.startsWith(ZOMBIE_NAME);
-    }
-
 }

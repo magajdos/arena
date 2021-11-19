@@ -1,7 +1,6 @@
 package listenery;
 
 import monstra.MonstraStav;
-import monstra.TovarnaNaZombiky;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -9,16 +8,18 @@ import zarizeni.dvere_areny.DvereAreny;
 
 public class SmrtMonstra implements Listener {
 
-    private DvereAreny dvere;
+    private final DvereAreny dvere;
+    private final MonstraStav monstraStav;
 
-    public SmrtMonstra(DvereAreny dvere) {
+    public SmrtMonstra(DvereAreny dvere, MonstraStav monstraStav) {
         this.dvere = dvere;
+        this.monstraStav = monstraStav;
     }
 
     @EventHandler
     public void deathOfMonsters(EntityDeathEvent deathEvent) {
-        if (TovarnaNaZombiky.jeMonstrum(deathEvent.getEntity()))
-            if (MonstraStav.jsouMonstraMrtva()) {
+        if (monstraStav.jeMonstrum(deathEvent.getEntity()))
+            if (monstraStav.jsouMonstraMrtva()) {
                 dvere.otevriDvere();
             }
     }

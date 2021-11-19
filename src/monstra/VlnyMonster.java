@@ -3,10 +3,16 @@ package monstra;
 import monstra.TovarnaNaZombiky;
 import org.bukkit.Location;
 
+import java.io.File;
+
 public final class VlnyMonster {
 
-    private final TovarnaNaZombiky tovarnaNaZombiky = new TovarnaNaZombiky();
+    private final TovarnaNaZombiky tovarnaNaZombiky;
     private int pocitadlo = 1;
+
+    public VlnyMonster(File datovyAdresar) {
+        tovarnaNaZombiky = new TovarnaNaZombiky(datovyAdresar);
+    }
 
     public void dalsiVlna(Location location) {
         switch (pocitadlo) {
