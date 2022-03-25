@@ -25,6 +25,7 @@ public final class Obchodnik implements CommandExecutor {
         tovarnaNaZbroje = new TovarnaNaZbroje();
     }
 
+    
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!(commandSender instanceof Player)) return false;

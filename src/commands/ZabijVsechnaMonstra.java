@@ -17,8 +17,6 @@ public class ZabijVsechnaMonstra implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        Player player = (Player) commandSender;
-        //takto to je kvuli soucastne modifikaci MONSTRA listu pri smrti mosntra
         var monstra = monstraStav.getMonsters();
         monstra.forEach(monstrum -> monstrum.damage(2000));
         return true;

@@ -24,7 +24,7 @@
     "chestPlate": "CHAINMAIL_CHESTPLATE",
     "boots": "CHAINMAIL_BOOTS",
     "health": 26,
-    "regenerace": 1,
+    "regeneration": 1,
     "speed": 1
   },
   {
@@ -32,7 +32,7 @@
     "weapon": "DIAMOND_SWORD",
     "chestPlate": "IRON_CHESTPLATE",
     "health": 28,
-    "regenerace": 1,
+    "regeneration": 1,
     "strength": 3
   },
   {
@@ -42,7 +42,7 @@
     "chestPlate": "IRON_CHESTPLATE",
     "legins": "IRON_LEGGINGS",
     "boots": "IRON_BOOTS",
-    "regenerace": 1,
+    "regeneration": 1,
     "strength": 1,
     "health": 30
   },
@@ -86,7 +86,7 @@
     "weapon": "GOLDEN_SWORD",
     "chestPlate": "GOLDEN_CHESTPLATE",
     "speed": 2,
-    "regenerace": 4,
+    "regeneration": 4,
     "strength": 10,
     "health": 200
   }

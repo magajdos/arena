@@ -22,4 +22,15 @@ public class OdmenaZaZabitiMonstra implements Listener {
             deathEvent.getDrops().add(new ItemStack(Material.GOLD_NUGGET));
         }
     }
+
+/*  podle martinka
+    @EventHandler
+    public void deathOfMonsters(EntityDeathEvent deathEvent) {
+    var monstrum = event.getEntity();
+        if (monstrum.equals(monstraStav.jeMonstrum(monstrum))){
+        event.getDrops().clear();
+        event.getDrops().add(new ItemStack(Material.GOLD_NUGGET));
+
+    }
+*/
 }

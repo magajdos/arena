@@ -11,6 +11,7 @@ public class PripojeniRespawn implements Listener {
     @EventHandler
     public static void pripojeni(PlayerJoinEvent event) {
         event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), -110, 64, -33));
+
     }
 
     @EventHandler

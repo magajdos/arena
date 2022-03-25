@@ -10,8 +10,8 @@ public final class VlnyMonster {
     private final TovarnaNaZombiky tovarnaNaZombiky;
     private int pocitadlo = 1;
 
-    public VlnyMonster(File datovyAdresar) {
-        tovarnaNaZombiky = new TovarnaNaZombiky(datovyAdresar);
+    public VlnyMonster(TovarnaNaZombiky tovarnaNaZombiky) {
+        this.tovarnaNaZombiky = tovarnaNaZombiky;
     }
 
     public void dalsiVlna(Location location) {

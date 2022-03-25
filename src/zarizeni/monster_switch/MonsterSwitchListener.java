@@ -61,11 +61,11 @@ public final class MonsterSwitchListener implements Listener {
         if (!blockMetadata.isEmpty()) {
             e.getBlock().removeMetadata(MONSTER_SWITCH_ZNACKA, plugin);
             uloziste.odeber(MONSTER_SWITCH_ZNACKA, e.getBlock().getLocation());
-            opravSpinace();
+            opravUloziste();
         }
     }
 
-    private void opravSpinace() {
+    private void opravUloziste() {
         var lokaceSpinacu = Sets.newHashSet(uloziste.nacti(MONSTER_SWITCH_ZNACKA));
         for (var lokaceSpinace : lokaceSpinacu) {
             var metadataSpinace = lokaceSpinace.getBlock().getMetadata(MONSTER_SWITCH_ZNACKA);

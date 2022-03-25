@@ -6,7 +6,6 @@ import org.bukkit.block.data.type.Door;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import uloziste_dat.Uloziste;
-
 import java.util.List;
 
 public final class DvereAreny {

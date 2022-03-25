@@ -8,6 +8,7 @@ import listenery.OdmenaZaZabitiMonstra;
 import listenery.PripojeniRespawn;
 import listenery.SmrtMonstra;
 import monstra.MonstraStav;
+import monstra.TovarnaNaZombiky;
 import monstra.VlnyMonster;
 import org.bukkit.plugin.java.JavaPlugin;
 import uloziste_dat.Uloziste;
@@ -26,7 +27,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
 
         var world = getServer().getWorlds().get(0);
-        var tovarnaNaVlny = new VlnyMonster(getDataFolder());
+        var  tovarnaNaZombiky = new TovarnaNaZombiky(getDataFolder());
+        var tovarnaNaVlny = new VlnyMonster(tovarnaNaZombiky);
         var uloziste = new Uloziste(world, this);
         var dvereAreny = new DvereAreny(this, uloziste);
         var dvereArenyListener = new DvereArenyListener(dvereAreny, this);

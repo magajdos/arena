@@ -14,12 +14,10 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-final class TovarnaNaZombiky {
+public final class TovarnaNaZombiky {
 
     public final static String ZOMBIE_NAME = "Zombie";
     //mapujeme level zombie na definici zombie
