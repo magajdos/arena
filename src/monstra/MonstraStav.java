@@ -28,7 +28,4 @@ public final class MonstraStav {
     public boolean jsouMonstraMrtva() {
         return getMonsters().isEmpty();
     }
-
-
-
 }

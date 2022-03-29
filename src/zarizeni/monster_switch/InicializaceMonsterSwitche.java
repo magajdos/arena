@@ -5,7 +5,6 @@ import org.bukkit.World;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
 import uloziste_dat.Uloziste;
-import java.util.List;
 import java.util.Set;
 
 import static zarizeni.monster_switch.MonsterSwitchListener.MONSTER_SWITCH_ZNACKA;
